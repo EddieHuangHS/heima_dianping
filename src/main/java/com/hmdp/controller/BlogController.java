@@ -73,4 +73,10 @@ public class BlogController {
         Page<Blog> page = blogService.query().eq("user_id", id).page(new Page<>(current, SystemConstants.MAX_PAGE_SIZE));
         return Result.ok(page.getRecords());
     }
+
+    @GetMapping("/of/follow")
+    public Result queryBlogOfFollow(
+            @RequestParam("lastId") Long max, @RequestParam(value = "offset", defaultValue = "0") Integer offset) {
+        return blogService.queryBlogOfFollow(max, offset);
+    }
 }
